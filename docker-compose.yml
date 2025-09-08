@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   fastapi:
@@ -6,8 +6,10 @@ services:
     container_name: fastapi_app
     ports:
       - "8000:8000"
+    volumes:
+      - ./endpoints:/app/endpoints
+      - ./schemas:/app/schemas
+      - ./services:/app/services
+    restart: unless-stopped
     env_file:
       - .env
-    volumes:
-      - ./app:/app/app  # optional: live code reload in development
-    restart: unless-stopped
